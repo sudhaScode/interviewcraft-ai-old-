@@ -1,0 +1,31 @@
+.split{
+    display: flex;
+    flex-direction: row;
+
+}
+.left-pane{
+height: 86.2vh;
+background-color: rgb(226, 201, 201);
+min-width: 20vw;
+max-width: 35vw;
+}
+.gutter {
+    background-color: rgb(227, 224, 224);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    width: 10px !important;
+    cursor: ew-resize !important;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('/src/assets/dividershort.svg');
+    cursor: ew-resize !important;
+}
+.gutter:hover,
+.gutter:active{
+    background-color: rgb(146, 201, 244);
+}
+.right-pane{
+    height: 100%;
+}
