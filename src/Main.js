@@ -1,10 +1,11 @@
 import Splitter from "./Components/Splitter/Splitter";
+import React from "react";
 
-function Main(){
+function Main({isLogin}){
 
     return(
         <>
-       <Splitter/>
+       <Splitter isLogin={isLogin}/>
         </>
     );
 

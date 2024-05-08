@@ -1,6 +1,6 @@
 .header{
    
-    height: 80px;
+    height: 12vh;
     width: 100%;
     background-color: rgb(202, 154, 154);
     display: flex;
@@ -17,7 +17,7 @@
   
 }
 .login{
-    margin-right: 3rem;
+    margin-right: 3%;
     background-color: transparent;
     border: none;
     font-size: 1.8rem;
