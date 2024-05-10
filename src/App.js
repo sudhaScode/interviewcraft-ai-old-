@@ -3,7 +3,6 @@ import './App.css';
 import Main from './Main';
 import React,{useState} from 'react';
 import "react-chatbot-kit/build/main.css";
-import Header from "./Components/Header"
 
 
 function App() {

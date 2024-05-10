@@ -2,11 +2,16 @@ import React from "react";
 import Resume from "./Resume";
 import PromptsMenu from "./PromptsMenu";
 
-function LeftPaneMenu({isLogin}){
+function LeftPaneMenu({isLogin,  checkUpload, isUploded}){
 
     return(
        <>
-        {isLogin? <PromptsMenu/>:<Resume/>}
+    
+        {isLogin &&<>
+         {isUploded && <PromptsMenu/>}
+        <Resume checkUploaded={checkUpload}/>
+        </>}
+        
        </>
     );
 }

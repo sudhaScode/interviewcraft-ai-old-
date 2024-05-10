@@ -4,11 +4,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { resume, interview, mock } from "../constants/prompts";
 
 function PromptsMenu() {
+
     const [show, setShow] = useState(false);
     const [isResume, setIsResume] = useState(false);
     const [isInterview, setIsInterview] = useState(false);
     const [isMock, setIsMock] = useState(false);
-
 
     const onClickoptionHandler=(event)=>{
       let eventName = event.target.name;
@@ -17,17 +17,17 @@ function PromptsMenu() {
         case "resume":
             setIsMock(false)
             setIsInterview(false);
-            setIsResume(true);
+            setIsResume((prevState)=>!prevState);
             break;
         case "interview":
-            setIsInterview(true);
+            setIsInterview((prevState)=>!prevState);
             setIsMock(false)
             setIsResume(false)
             break;
         case "mock":
             setIsResume(false);
             setIsInterview(false);
-            setIsMock(true);
+            setIsMock((prevState)=>!prevState);
             break;
         default:
             console.error("Unknown event triggered");    
@@ -50,16 +50,16 @@ function PromptsMenu() {
                         </div>}
             </div>
 
-            {isResume && <>
+            {isResume && <div className={styles["prompts-list"]}>
             <p className={styles.predefined}>Prompts for Resume Enhancement</p>
             <div className={styles["prompts-container"]}>
-                 {resume.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </>}
-            {isInterview && <>
+                 {resume.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
+            {isInterview && <div>
                 <p className={styles.predefined}>Prompts for Resume Enhancement</p>
-            <div className={styles["prompts-container"]}> {interview.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </>}
-            {isMock && <>
+            <div className={styles["prompts-container"]}> {interview.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
+            {isMock && <div>
                 <p className={styles.predefined}>Prompts for Resume Enhancement</p>
-            <div className={styles["prompts-container"]}> {mock.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </>}
+            <div className={styles["prompts-container"]}> {mock.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
 
         </div>
 

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 
 
-function Resume() {
+function Resume({checkUploaded}) {
     const inputRef = useRef("");
     const [filePlaceholder, setFilePlaceholder] = useState("SELECT RESUME");
     const [fileInput, setInput] = useState(false);
@@ -27,6 +27,7 @@ function Resume() {
     setInput(false)}, 2000);
     setTimerID(timer);
     setFilePlaceholder("SELECT RESUME");
+    checkUploaded(true);
  
   }
   const onFileChange=(event)=>{
@@ -34,8 +35,7 @@ function Resume() {
     setFilePlaceholder(file.name);
     
    // console.log(file, "selected file");
-   
-
+  
   }
 
 

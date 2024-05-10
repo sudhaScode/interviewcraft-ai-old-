@@ -1,3 +1,7 @@
+.App{
+ background-color:  rgb(244, 227, 227);
+ height: 100vh;
+}
 *{
   margin: 0;
   padding: 0;
@@ -11,7 +15,7 @@
 .react-chatbot-kit-chat-bot-message {
   margin-left: 10px;
   width: auto;
-  background-color: #F9EFEF;
+  background-color: rgb(249, 239, 239);
   color:black;
   font-family: Itim;
   font-weight: bold;
