@@ -1,13 +1,14 @@
-import Header from './Components/Header';
-import './App.css';
-import Main from './Main';
+import "react-chatbot-kit/build/main.css";
+import Header from "./Components/Header.js"
+import Main from "./Main.js";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Main/>      
-    </div>
+    <>
+      <Header className="Header"/>
+      <Main/>
+    </>
   );
 }
 
