@@ -28,4 +28,5 @@ max-width: 35vw;
 }
 .right-pane{
     height: 100%;
+    min-width: 65vw;
 }
