@@ -1,0 +1,98 @@
+.chat-box{
+    margin-top: 20px;
+    max-height: 63vh;
+    overflow-y: auto;
+    margin: 3px 0;
+    margin-top: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    background-image: linear-gradient(to bottom,  rgb(244, 227, 227), 95%, rgb(241, 171, 171) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+   
+}
+.chat-box::-webkit-scrollbar{
+    width: 8px;
+
+}
+.chat-box::-webkit-scrollbar-track{
+  
+    border-radius: 6px;
+    height: 2px !important;
+   /* background: linear-gradient(45deg, orange, darksalmon);*/
+}
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: rgba(69, 69, 69, 0.482);
+    border-radius: 6px;
+    /* Additional properties to create a smaller visual thumb: */
+    margin: 2px 2px; /* Simulates a smaller thumb within the track */
+  }
+.interface{
+    margin-top: 20px ;
+    margin: 0 3%;
+}
+
+.bot-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+   /* border: 3px solid burlywood;*/
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+.user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+.chat-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(99, 97, 97, 0.587);
+    filter: blur(0.6px);
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: medium;
+    font-weight: bold;
+    font-family: cursive;
+    
+}
+.header span{
+    margin:0 10px;
+}
+.container-user-message{
+    width: 70%;
+    min-height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 15px;
+    font-family:   sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 10px 8px;
+    margin-top: 1px;
+
+}
+.container-bot-message{
+    min-width: 50%;
+    max-width: 70%;
+    min-height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-top: 1px;
+    font-family:   sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 10px 8px;
+
+}

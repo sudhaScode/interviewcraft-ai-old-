@@ -1,6 +1,6 @@
 import { createChatBotMessage } from "react-chatbot-kit";
-import Avatar from "./Avatar.js";
-import UserAvatar from "./UserAvatar.js";
+import Avatar from "./Avatar";
+import UserAvatar from "./UserAvatar";
 
 const config = {
   botName: "interViewCraft.ai",
