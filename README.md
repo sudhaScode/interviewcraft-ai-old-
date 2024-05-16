@@ -9,3 +9,5 @@
   /login > craft
   /register >craft
   /craft
+
+  >>conda config --set ssl_verify false 

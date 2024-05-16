@@ -1,0 +1,10 @@
+langchain
+langchain-community
+python-dotenv
+pydantic
+fastapi
+pypdf
+google-generativeai
+uvicorn[standard]
+pipdeptree
+Markdown
