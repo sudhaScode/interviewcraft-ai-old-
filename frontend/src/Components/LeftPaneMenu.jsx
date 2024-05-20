@@ -6,12 +6,8 @@ function LeftPaneMenu({isLogin,  checkUpload, isUploded}){
 
     return(
        <>
-    
-        {isLogin &&<>
-         {isUploded && <PromptsMenu/>}
-        <Resume checkUploaded={checkUpload}/>
-        </>}
-        
+       {(isLogin && !isUploded) && <Resume checkUploaded={checkUpload}/>}
+       {isUploded&&<PromptsMenu/>}        
        </>
     );
 }

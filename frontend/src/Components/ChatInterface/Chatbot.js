@@ -1,4 +1,4 @@
-import React from 'react';  
+import React, { useEffect, useState } from 'react';  
 import Chat from './Chat';
 import ChatAction from "./ChatAction";
 import styles from "./Chat.module.css"
@@ -10,42 +10,27 @@ function Chatbot({isUploded}){
         key: "bot-init-res",
         response:"Welcome to GenAI! Your one-stop shop for landing your dream job.\nPlease logon to my application."
     },
-    {
-        name: "Craft.ai",
-        key: "bot-init-res",
-        response:"Please upload the resume on left panel to get start."
-    },
-    {
-        name: "snb ram",
-        key:"user-init-res",
-        response:"Analyze my resume for [Job Title] and suggest improvements to make it a better fit."
-    },
-    {
-        name: "Craft.ai",
-        key: "bot-init-res",
-        response:"Welcome to GenAI! Your one-stop shop for landing your dream job.\nPlease Login and Upload the Resume to continue"
-    },
-    {
-        name: "snb ram",
-        key:"user-init-res",
-        response:"Analyze my resume for [Job Title] and suggest improvements to make it a better fit."
-    },
-    {
-        name: "Craft.ai",
-        key: "bot-init-res",
-        response:"Welcome to GenAI! Your one-stop shop for landing your dream job.\nPlease Login and Upload the Resume to continue"
-    },
-    {
-        name: "snb ram",
-        key:"user-init-res",
-        response:"Analyze my resume for [Job Title] and suggest improvements to make it a better fit."
-    }
     ]
+    const [conversation, setConversation] = useState(messages);
+    const pushChat =(message)=>{
+        setConversation(prevState=> [...prevState, message]);
+    }
+  useEffect(()=>{
+    if(isUploded){
+        //console.log("UPLOAD DEBUGG", isUploded)
+        const message =  {
+            name: "Craft.ai",
+            key: "bot-resume-res",
+            response:"Resume is under construction...\nPlease wait for best improvements"
+        }
+        pushChat(message);
+        }
+  }, [isUploded])
 
     return(
         <div className={styles.container}>
-        <Chat messages={messages}/>   
-        <ChatAction isUploded={isUploded}/>  
+        <Chat messages={conversation}/>   
+        <ChatAction isUploded={isUploded} pushChat={pushChat}/>  
         </div>
 
 

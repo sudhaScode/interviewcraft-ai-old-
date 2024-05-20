@@ -1,14 +1,13 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import styles from "./Resume.module.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { useEffect } from "react";
 
 
 
 function Resume({checkUploaded}) {
     const inputRef = useRef("");
     const [filePlaceholder, setFilePlaceholder] = useState("SELECT RESUME");
-    const [fileInput, setInput] = useState(false);
+    const [fileInput, setInput] = useState(null);
     const [loader, setLoader] = useState(false);
     const [timerId, setTimerID] = useState("");
   const onFileHandler=()=>{
@@ -17,28 +16,45 @@ function Resume({checkUploaded}) {
         inputRef.current.click();
     }   
   }
-  const onUploadFile=(event)=>{
+  const onUploadFile= async(event)=>{
     setLoader(true);
     event.preventDefault();
-    setInput(true);
+    /*
     let timer = setTimeout(()=>{
       //console.log("setting loader false");
-      setLoader(false);
     setInput(false)}, 2000);
-    setTimerID(timer);
+    setTimerID(timer);*/
+   // console.log(file, "selected file");
     setFilePlaceholder("SELECT RESUME");
-    checkUploaded(true);
+    fetchAPI(fileInput)
  
   }
-  const onFileChange=(event)=>{
+  const onFileChange=  (event)=>{
     const file = event.target.files[0];
+    localStorage.setItem("fileName", file.name)
     setFilePlaceholder(file.name);
-    
-   // console.log(file, "selected file");
-  
+    setInput(file)
+    //const slectedFile = new FileReader();
   }
-
-
+  const fetchAPI = async(fileInput)=>{
+    try{
+      const fileData = new FormData();
+      fileData.append('resume', fileInput)
+      const response = await fetch("http://127.0.0.1:8000/resume", {
+        method : "POST",
+      body: fileData
+    })
+      //console.log("RESPONSE DEBUG::",response)
+      if(response.ok){
+        setLoader(false);
+        checkUploaded(true);
+      }
+     }
+     catch(error){
+      console.log("An error occured", error)
+     }
+  }
+  
     return (
         <div className={styles["form-container"]}>
            <form onSubmit={onUploadFile} >
@@ -46,9 +62,6 @@ function Resume({checkUploaded}) {
            <div>
            <button className={styles["resume-button"]} onClick={onFileHandler}>{filePlaceholder==="SELECT RESUME" &&<CloudUploadIcon className={styles["cloud-icon"]} />}<p className={styles.selectr}> {filePlaceholder==="SELECT RESUME"?filePlaceholder:"RESUME SELECTED"}</p></button>
            </div>
-           
-           
-
           <div className={styles["checkbox-one"]}> <input type="checkbox" id="checkOne" name ="resumeenhancing" defaultChecked/><label htmlFor="checkOne">Resume Enhancing</label></div>
           <div className={styles["checkbox-two"]}> <input type="checkbox" id="checkTwo" name ="interviewpreparation" defaultChecked/><label htmlFor="checkTwo" >Interview Preparation</label></div>
           <div className={styles["checkbox-three"]}> <input type="checkbox" id="checkThree" name ="mockinterview" defaultChecked/><label htmlFor="checkThree">Mock Interview</label></div>

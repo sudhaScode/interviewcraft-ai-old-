@@ -11,3 +11,6 @@
   /craft
 
   >>conda config --set ssl_verify false 
+
+
+  https://www.analyticsvidhya.com/blog/2023/10/a-comprehensive-guide-to-using-chains-in-langchain/
