@@ -8,3 +8,6 @@ google-generativeai
 uvicorn[standard]
 pipdeptree
 Markdown
+langchain_google_genai
+IPython
+pdfplumber
