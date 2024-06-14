@@ -13,8 +13,9 @@
 }
 .logo{
     margin-left: 3rem;
-    cursor: grabbing;
-
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 .login{
     margin-right: 3rem;

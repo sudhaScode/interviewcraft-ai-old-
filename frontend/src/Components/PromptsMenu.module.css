@@ -79,7 +79,7 @@
     font-size: large;
 }
 .prompts-container{
-    height: 400px;
+    height: 76vh;
     width: 90%;
     overflow: auto;
     font-weight: 600;

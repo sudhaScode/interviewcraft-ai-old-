@@ -1,13 +1,17 @@
 import React from "react";
 import Resume from "./Resume";
 import PromptsMenu from "./PromptsMenu";
+import { useSelector } from "react-redux";
 
-function LeftPaneMenu({isLogin,  checkUpload, isUploded}){
 
+function LeftPaneMenu(){
+    const isLogin = useSelector(state=>state.flow.isLogin);
+    const isUploaded = useSelector(state=>state.flow.isUploaded)
+   console.log(isUploaded, isLogin, "store")
     return(
        <>
-       {(isLogin && !isUploded) && <Resume checkUploaded={checkUpload}/>}
-       {isUploded&&<PromptsMenu/>}        
+       {isLogin && !isUploaded && <Resume />}
+       {isLogin && isUploaded && <PromptsMenu/>  }    
        </>
     );
 }

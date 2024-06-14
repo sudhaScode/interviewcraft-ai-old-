@@ -1,26 +1,22 @@
-import Header from './Components/Header';
+import Header from './components/Header';
 import './App.css';
 import Main from './Main';
 import React,{useState} from 'react';
 import "react-chatbot-kit/build/main.css";
+import router from './components/routing/Router';
+import { RouterProvider } from 'react-router-dom';
+import {Provider} from "react-redux";
+import { persistedStore} from './reduxstore/Store';
 
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
-  const onAuthentication =(auth)=>{
-    if(auth === "ba-ft-efo-er-re"){
-      setIsLogin(true);
-    }
-    else{
-      setIsLogin(false);
-    }
 
-  }
   return (
-    <div className="App">
-      <Header onAuthentication={onAuthentication}/>
-      <Main isLogin={isLogin}/>      
-    </div>
+    <Provider store={persistedStore}>
+      <div className="App">
+        <RouterProvider router={router}/>
+      </div>
+    </Provider>
   );
 }
 

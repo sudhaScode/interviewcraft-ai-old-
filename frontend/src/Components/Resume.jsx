@@ -1,15 +1,21 @@
 import React, {useRef, useState, useEffect} from "react";
 import styles from "./Resume.module.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useDispatch, useSelector } from "react-redux";
+import { handleUpload } from "../reduxstore/Store";
+import { push } from "../reduxstore/Store";
 
 
 
-function Resume({checkUploaded}) {
+function Resume() {
     const inputRef = useRef("");
     const [filePlaceholder, setFilePlaceholder] = useState("SELECT RESUME");
     const [fileInput, setInput] = useState(null);
     const [loader, setLoader] = useState(false);
     const [timerId, setTimerID] = useState("");
+    const dispatch = useDispatch();
+    let messages = useSelector(state=>state.chat.messages)
+
   const onFileHandler=()=>{
     //const inputElement = document.getElementById("filePlaceholder");
     if(inputRef.current){
@@ -38,22 +44,49 @@ function Resume({checkUploaded}) {
   }
   const fetchAPI = async(fileInput)=>{
     try{
+      /*
       const fileData = new FormData();
       fileData.append('resume', fileInput)
       const response = await fetch("http://127.0.0.1:8000/resume", {
         method : "POST",
       body: fileData
-    })
-      //console.log("RESPONSE DEBUG::",response)
-      if(response.ok){
+    })response.ok
+      */
+      if(true){
+        //console.log("RESPONSE DEBUG::",response)
         setLoader(false);
-        checkUploaded(true);
+        sessionStorage.setItem("uploded", true)
+        dispatch(handleUpload(true))
+        const message =  {
+          name: "Craft.ai",
+          key: "bot-resume-res",
+          response:"Resume is under construction...\nPlease wait for best improvements"
+      }
+      // const persistedMessages =JSON.parse( sessionStorage.getItem("messages"))
+      // persistedMessages.push(message)
+       let storeMessage = [...messages, message]
+       sessionStorage.setItem("messages", JSON.stringify(storeMessage))
+    
+        //pushChat(message);
+        dispatch(push(message))
+        //sessionStorage.setItem("messages", JSON.stringify(messages))
+        
       }
      }
      catch(error){
       console.log("An error occured", error)
      }
   }
+  // const isUploaded = useSelector(state=>state.flow.isUploaded)
+  //   useEffect(()=>{
+        
+  //       // if(!areMessages){
+  //       //    sessionStorage.setItem("messages", JSON.stringify(messages)) 
+  //       // }
+  //       if(isUploaded){
+           
+  //        }
+  //   },[isUploaded])
   
     return (
         <div className={styles["form-container"]}>

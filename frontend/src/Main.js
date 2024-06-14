@@ -1,12 +1,12 @@
-import Splitter from "./Components/Splitter/Splitter";
+import Splitter from "./components/splitter/Splitter";
 import React from "react";
 import styles from "./Main.module.css";
 
-function Main({isLogin}){
+function Main(){
 
     return(
         <div className={styles.main}>
-       <Splitter isLogin={isLogin}/>
+       <Splitter/>
         </div>
     );
 
