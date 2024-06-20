@@ -2,7 +2,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 import json
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from src.main import llm, to_markdown
+# from src.main import llm, to_markdown
+from src.main import llm, to_markdown, resume_enhance
 
 app = FastAPI()
 

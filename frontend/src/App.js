@@ -1,25 +1,14 @@
-import Header from './Components/Header';
 import './App.css';
+import { Route, Routes } from "react-router-dom";
 import Main from './Main';
-import React,{useState} from 'react';
-import "react-chatbot-kit/build/main.css";
+import React from 'react';
 
-
-function App() {
-  const [isLogin, setIsLogin] = useState(false)
-  const onAuthentication =(auth)=>{
-    if(auth === "ba-ft-efo-er-re"){
-      setIsLogin(true);
-    }
-    else{
-      setIsLogin(false);
-    }
-
-  }
+function App({isLogin}) {
   return (
     <div className="App">
-      <Header onAuthentication={onAuthentication}/>
-      <Main isLogin={isLogin}/>      
+      <Routes>
+        <Route path="/" element={<Main isLogin={isLogin}/>} />
+      </Routes>
     </div>
   );
 }
