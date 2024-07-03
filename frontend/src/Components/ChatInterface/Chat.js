@@ -1,29 +1,10 @@
-import React, { useEffect, useState } from "react";
 import styles from "./Chat.module.css";
-import { useSelector } from "react-redux";
-import {chatInitialState} from "../../reduxstore/Store"
 
 
 
-function Chat() {
-    let storedMessages = useSelector(state=>state.chat.messages)
-    const [messages, setMessages]  = useState(storedMessages)
+function Chat({messages}) {
     const botimage = "https://images.unsplash.com/photo-1586374579358-9d19d632b6df?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     const userimage = "https://images.unsplash.com/photo-1696429175928-793a1cdef1d3?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-    const isLogin = useSelector(state=>state.flow.isLogin)
-
- 
-   useEffect(()=>{
-        const areMessages = sessionStorage.getItem("messages")
-        if(areMessages){
-            setMessages(JSON.parse(areMessages));
-        }
-      console.log(messages, "stored messages")
-   }, [storedMessages])
-
-   useEffect(()=>{
-     setMessages(chatInitialState.messages);
-   },[isLogin])
 
 
     return (
