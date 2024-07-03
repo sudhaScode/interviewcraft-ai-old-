@@ -12,9 +12,11 @@ import {chatInitialState} from "../../reduxstore/Store"
 function NavBar(){
     const isLogin = useSelector(state=>state.flow.isLogin)
     const dispatch = useDispatch()
-    console.log(isLogin, "login state")
+   // console.log(isLogin, "login state")
     const navigate = useNavigate()
+
     const loginHandler =(event)=>{
+        //console.log(event.target.name)
         if(event.target.name === "login"){
             navigate("/login")
         }

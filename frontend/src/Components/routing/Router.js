@@ -2,7 +2,8 @@ import {createBrowserRouter} from "react-router-dom";
 import RouteLayout from "./RouteLayout";
 import { Navigate } from "react-router-dom";
 import Main from "../../Main";
-import Login from "../auth/Login";
+import LoginPage from "../authcomponents/LoginPage";
+import SignupPage from "../authcomponents/SignupPage";
 
 /**
      Responsible for Routing in throught out application
@@ -17,6 +18,14 @@ const router = createBrowserRouter([
         element: <Navigate to="/prompt"/>
     },
     {
+        path:"/login",
+        element: <LoginPage/>
+    },
+    {
+        path:"/signup",
+        element: <SignupPage/>
+    },
+    {
         path:"/prompt",
         element: <RouteLayout/>,
         children:[
@@ -26,16 +35,6 @@ const router = createBrowserRouter([
             }
         ]
     },
-    {
-        path: "/login",
-        element:<Login/>
-    },
-    {
-        path: "/register",
-        element:""
-
-    },
-
 ])
 
 export default router;

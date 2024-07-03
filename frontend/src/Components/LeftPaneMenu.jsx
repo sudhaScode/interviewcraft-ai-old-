@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 function LeftPaneMenu(){
     const isLogin = useSelector(state=>state.flow.isLogin);
     const isUploaded = useSelector(state=>state.flow.isUploaded)
-   console.log(isUploaded, isLogin, "store")
+   //console.log(isUploaded, isLogin, "store")
     return(
        <>
        {isLogin && !isUploaded && <Resume />}
