@@ -3,7 +3,7 @@ import styles from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
 
-function SignupForm({handleSubmit}) {
+function SignupForm({onHandleSubmit}) {
   const[valid, setValid] = useState(true);
   const[isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function SignupForm({handleSubmit}) {
         username,
         password
     }
-    handleSubmit(data)
+    onHandleSubmit(data)
     setValid(true)
     setIsSubmitted(true)
   }

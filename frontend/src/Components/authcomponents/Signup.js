@@ -34,7 +34,7 @@ function Signup() {
 
 const  validation=(username,password)=>{
     
-    setTimeout(()=>{navigate("/login")}, 1500)
+    setTimeout(()=>{navigate("/login")}, 1000)
  }
  useEffect(()=>{
    return ()=>{clearTimeout()}
@@ -47,10 +47,10 @@ if(active){
     }
   return (
     <>
-        <SignupForm onLogin={handleSubmit}/>
+        <SignupForm onHandleSubmit={handleSubmit}/>
         <div className={styles.errors}>
         {invalid && <p className={styles.invalid}>Invalid credentials</p>}
-        {loading && <p className={styles.loading}>Loging in...</p>}
+        {loading && <p className={styles.loading}>Please login...</p>}
         </div>
     </>
 )}

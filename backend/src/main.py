@@ -14,14 +14,6 @@ load_dotenv()
 
 llm = ChatGoogleGenerativeAI(model="gemini-pro")
 
-
-def to_markdown(text):
-    text = text.replace("**", " ")
-    text = text.replace("*", " ")
-    text = text.replace("\n \n", "\n")
-    return Markdown(textwrap.indent(text,' ', predicate=lambda _:True))
-
-
 chain = LLMChain(llm=llm, prompt=prompt_template, verbose=True)
 
 def pdf_folder_reader(folder_path):

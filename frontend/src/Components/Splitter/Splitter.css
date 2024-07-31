@@ -6,8 +6,8 @@
 }
 .left-pane{
     background-color: rgb(226, 201, 201);
-    min-width: 25vw;
-    max-width: 40vw;
+    min-width: 23vw;
+    max-width: 38vw;
     height: 90vh;
 }
 .gutter {
@@ -29,6 +29,6 @@
     background-color: rgb(146, 201, 244);
 }
 .right-pane{
-    min-width: 65vw;
+    min-width: 72vw;
     height: 100%;
 }

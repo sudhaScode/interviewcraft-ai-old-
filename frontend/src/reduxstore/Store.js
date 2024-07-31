@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 
 const flowInitialState ={
-    isLogin: localStorage.getItem("auth")?true:false,
+    isLogin: localStorage.getItem("session")?true:false,
     isUploaded: sessionStorage.getItem("uploded")?true:false
 }
 const flowSlice = createSlice({
@@ -24,7 +24,7 @@ export const chatInitialState = {
     messages: [{
         name: "Craft.ai",
         key: "bot-init-res",
-        response:"Welcome to GenAI! Your one-stop shop for landing your dream job.\nPlease logon to my application."
+        response:"Welcome to GenAI! Your one-stop shop for landing your dream job.\nPlease login to my application."
     }]
 }
 
@@ -34,7 +34,7 @@ const chatSlice = createSlice({
     reducers:{
         push:(state,action)=>{
            state.messages = [...state.messages, action.payload];
-           //console.log(state.messages)
+            console.log(state.messages)
            // sessionStorage.setItem("messages",[JSON.stringify(...state.messages), JSON.stringify(action.payload)])
         },   
     } 

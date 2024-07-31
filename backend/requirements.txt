@@ -5,9 +5,9 @@ pydantic
 fastapi
 pypdf
 google-generativeai
+langchain_google_genai
 uvicorn[standard]
 pipdeptree
 Markdown
-langchain_google_genai
 IPython
 pdfplumber

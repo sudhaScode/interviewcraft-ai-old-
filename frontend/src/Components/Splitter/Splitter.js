@@ -3,7 +3,7 @@ import "./Splitter.css";
 import Split from "react-split";
 import LeftPaneMenu from "../LeftPaneMenu";
 import Chatbot from "../chatinterface/Chatbot";
-/*
+/*  
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import ActionProvider from "../Chatbot/ActionProvider";

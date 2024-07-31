@@ -11,15 +11,15 @@ function Chatbot(){
     //console.log("messages:: ", messages)
 
     const dispatch = useDispatch();
-    const pushChat =(message)=>{
-        //setConversation(prevState=> [...prevState, message]);
-        dispatch(push(message))
-    }
 
     let storedMessages = useSelector(state=>state.chat.messages)
     const areMessages = sessionStorage.getItem("messages")
     const [messages, setMessages]  = useState(JSON.parse(areMessages) || storedMessages)
     const isLogin = useSelector(state=>state.flow.isLogin)
+    const pushChat =(message)=>{
+        //setConversation(prevState=> [...prevState, message]);
+        dispatch(push(message))
+    }
 
  
    useEffect(()=>{

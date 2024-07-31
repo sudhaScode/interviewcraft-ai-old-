@@ -39,7 +39,8 @@ function Login() {
 
 const  validation=async (username,password)=>{
     //console.log(username,password)
-    if(!username || !password){
+    // TODO: server side authentication need to setup
+   /* if(!username || !password){
         setInvalid(true);
         setLoading(false);
         return;
@@ -48,8 +49,9 @@ const  validation=async (username,password)=>{
         setInvalid(true);
         setLoading(false);
         return;
-    }
-    if(username === authLogin.username && password === authLogin.password){
+    }*/
+    //username === authLogin.username && password === authLogin.password
+    if(true){
         setInvalid(false);
         setLoading(true);
         setTimeout(()=>{

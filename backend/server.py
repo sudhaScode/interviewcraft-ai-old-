@@ -1,7 +1,8 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import JSONResponse
 import json
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from src.pydantic_models.request_model import PromptRequestModel
 from src.main import llm, to_markdown, resume_enhance
 
 app = FastAPI()
@@ -14,11 +15,15 @@ app.add_middleware(
     allow_methods=["*"],    
     allow_headers=["*"],
 )
-@app.get("/")
-def start():
-    response = llm.invoke("Write about the interview process for freshsers")
+
+
+@app.post("/prompt")
+async def start(Prompt: PromptRequestModel):
+    response = llm.invoke(Prompt.prompt)
+    
     result = to_markdown(response.content)
-    return result.data
+    print(result)
+    return JSONResponse({"response": result})
 
 @app.post("/resume")
 async def resume(resume: UploadFile = File(...)):
