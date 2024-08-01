@@ -26,8 +26,9 @@ function ChatAction(){
         persistedMessages.push(payload)
         sessionStorage.setItem("messages", JSON.stringify(persistedMessages))
         dispatch(push(payload));
-        const data = await fetchAPI(payload.response)
-        console.log("got it:: ",data.response)
+        try{
+            const data = await fetchAPI(payload.response)
+       // console.log("got it:: ",data.response)
         const result = {
             name: "Craft.ai",
             key: "bot-init-res",
@@ -40,6 +41,13 @@ function ChatAction(){
         if(ref.current){
             ref.current.value=""
            }
+        }
+        catch(e){ 
+             if(ref.current){
+                ref.current.placeholder="Request not processed please try again"
+               }
+            setIsPromting(false)
+        }
         setIsPromting(false)
     }
     const enhanceAPI = async()=>{

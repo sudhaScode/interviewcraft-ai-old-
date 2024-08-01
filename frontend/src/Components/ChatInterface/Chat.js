@@ -1,6 +1,7 @@
 import styles from "./Chat.module.css";
 import { useRef, useEffect } from "react";
 import {Marked} from 'marked';
+import ReactMarkdown from "react-markdown"
 
 function Chat({messages}) {
     //console.log(messages)
@@ -32,7 +33,9 @@ function Chat({messages}) {
                         <img src={botimage} alt={chat.name} className={styles["chat-img"]} />
                         <span>{chat.name}</span>
                     </div>
+                    {/* <ReactMarkdown children ={chat.response   }/> */}
                     <div className={styles["container-bot-message"]}  dangerouslySetInnerHTML={getMarkdownText(chat.response)}>
+                        
                     </div>
                 </div> : <div className={styles["user-container"]}>
                     <div className={styles.header}>
