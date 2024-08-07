@@ -1,4 +1,4 @@
-import Header from './components/Header';
+
 import './App.css';
 import Main from './Main';
 import React,{useState} from 'react';

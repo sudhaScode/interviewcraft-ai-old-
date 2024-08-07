@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import styles from "./PromptsMenu.module.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { resume, interview, mock } from "../constants/prompts";
+import { useDispatch } from "react-redux";
+import {handleUpload} from "../reduxstore/Store"
 
 function PromptsMenu() {
 
@@ -9,6 +11,7 @@ function PromptsMenu() {
     const [isResume, setIsResume] = useState(false);
     const [isInterview, setIsInterview] = useState(false);
     const [isMock, setIsMock] = useState(false);
+    const disptch = useDispatch()
 
     const onClickoptionHandler=(event)=>{
       let eventName = event.target.name;
@@ -34,6 +37,9 @@ function PromptsMenu() {
       }
     }
 
+    const resetHanlder=()=>{
+        disptch(handleUpload(false  ))
+    }
     return (
         <div className={styles["left-nav"]}>
             <div className={styles["nav-conatiner"]}>
@@ -47,7 +53,9 @@ function PromptsMenu() {
                                 <li><button className={isInterview?styles["menu-button-active"]:styles["menu-button"]} onClick={onClickoptionHandler} name="interview">Interview Preparation</button></li>
                                 <li><button className={isMock?styles["menu-button-active"]:styles["menu-button"]} onClick={onClickoptionHandler} name= "mock">Mock Interview</button></li>
                             </ul>
-                        </div>}
+                        </div>
+                         
+                        }
             </div>
 
             {isResume && <div className={styles["prompts-list"]}>
@@ -60,7 +68,7 @@ function PromptsMenu() {
             {isMock && <div>
                 <p className={styles.predefined}>Prompts for Resume Enhancement</p>
             <div className={styles["prompts-container"]}> {mock.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
-
+        {<button className={styles.reset} onClick={resetHanlder}>Reset</button>}
         </div>
 
     );

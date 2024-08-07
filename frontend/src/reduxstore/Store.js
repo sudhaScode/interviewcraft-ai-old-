@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 const flowInitialState ={
     isLogin: localStorage.getItem("session")?true:false,
-    isUploaded: sessionStorage.getItem("uploded")?true:false
+    isUploaded: sessionStorage.getItem("uploaded")?true:false
 }
 const flowSlice = createSlice({
     name: "flow",
@@ -34,7 +34,7 @@ const chatSlice = createSlice({
     reducers:{
         push:(state,action)=>{
            state.messages = [...state.messages, action.payload];
-            console.log(state.messages)
+            // console.log(state.messages)
            // sessionStorage.setItem("messages",[JSON.stringify(...state.messages), JSON.stringify(action.payload)])
         },   
     } 

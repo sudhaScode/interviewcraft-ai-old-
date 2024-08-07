@@ -54,7 +54,7 @@ function Resume() {
       if(response.ok){
         //console.log("RESPONSE DEBUG::",response)
         setLoader(false);
-        sessionStorage.setItem("uploded", true)
+        sessionStorage.setItem("uploaded", true)
         dispatch(handleUpload(true))
         const message =  {
           name: "Craft.ai",

@@ -31,19 +31,30 @@ app.add_middleware(
 #print(chat_template_prompt)
 chat_model= setup_model()
 memory = setup_conversationmemory()
-# chain = setup_conversationchain(chat_model, memory, prompt_template)
-# classificationchain = advance_chain(chat_model)
+chain = setup_conversationchain(chat_model, memory, prompt_template)
+
+
+# without memory
 #chain = advance_chain(chat_model,chat_template_prompt)
-chain = setup_chain(chat_model,chat_template_prompt, memory=memory)
+#chain = setup_chain(chat_model,chat_template_prompt)
 
 @app.post("/load")
 async def load(file: UploadFile = File(...)):
     print("Received request for load")
     #print(file, "asddfghlkjkjds")
     try:
-       file_name= load_file(file) #for tommorow
-    #    global resume
-    #    resume= resume_reader(f"store/{file_name}")
+        file_name= load_file(file) #for tommorow
+        resume= resume_reader(f"store/{file_name}")
+        # IF Memory works
+        query = "Service None, Just walk though the resume, and check for improvements don't generate anything it is just for your future reference " +" \n\n RESUME: \n\n "
+        query = query+ resume
+        #print(resume)
+        #response = chain.invoke(input =req.prompt, resume= resume) # for advanced chain
+        #data = response.content
+        response = chain.invoke(input = query)
+        # #    global resume
+        # #    resume= resume_reader(f"store/{file_name}")
+        # print(response)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -53,15 +64,18 @@ async def load(file: UploadFile = File(...)):
 async def prompt(req:Request):
     print("Received request for prompt: ",req.prompt)
     try:
-        resume= resume_reader(f"store/{req.file_name}")
-        query = req.prompt +" \n\n RESUME: \n\n "
-        query = query + resume
-        #print(resume)
+
+        """
+         # resume= resume_reader(f"store/{req.file_name}")
+        # query = req.prompt +" \n\n RESUME: \n\n "
+        # query = query + resume
         #response = chain.invoke(input =req.prompt, resume= resume) # for advanced chain
         #data = response.content
+        """
+        query= req.prompt
         response = chain.invoke(input = query)
         # data = to_markdown(response.content)
-        data = response["text"]
+        data = response["response"]
     except Exception as e: 
         #  logger.info(e)
         raise HTTPException(status_code=503, detail=str(e))

@@ -44,9 +44,9 @@ function ChatAction(){
         }
         catch(e){ 
              if(ref.current){
+                ref.current.value=""
                 ref.current.placeholder="Request not processed please try again"
                }
-            setIsPromting(false)
         }
         setIsPromting(false)
     }
@@ -89,7 +89,7 @@ function ChatAction(){
             }
         }
         catch(error){
-            console.error(error)
+            throw error
         }
         
     }

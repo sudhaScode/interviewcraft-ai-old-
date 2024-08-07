@@ -10,8 +10,8 @@ function LeftPaneMenu(){
    //console.log(isUploaded, isLogin, "store")
     return(
        <>
-       {isLogin && !isUploaded && <Resume />}
-       {isLogin && isUploaded && <PromptsMenu/>  }    
+       { isLogin && !isUploaded && <Resume />}
+       {isUploaded && <PromptsMenu/>  }  
        </>
     );
 }

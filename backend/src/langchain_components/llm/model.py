@@ -6,7 +6,7 @@ import os
 def setup_env():
     load_dotenv()
     LANGCHAIN_API_KEY= os.getenv("LANGCHAIN_API_KEY")
-    LANGCHAIN_TRACING_V2= True
+    LANGCHAIN_TRACING_V2= "true"
     LANGCHAIN_PROJECT="interviewCraft.ai"
     LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 

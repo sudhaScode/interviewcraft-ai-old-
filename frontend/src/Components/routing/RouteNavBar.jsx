@@ -10,8 +10,9 @@ import { handleAuth, handleUpload } from "../../reduxstore/Store";
 
 function NavBar(){
     const isLogin = useSelector(state=>state.flow.isLogin)
+    const isUploaded = useSelector(state=>state.flow.isUploaded)
     const dispatch = useDispatch()
-   // console.log(isLogin, "login state")
+   console.log(isUploaded, "upload state")
     const navigate = useNavigate()
 
     const loginHandler =(event)=>{
@@ -21,7 +22,8 @@ function NavBar(){
         }
         else{
             localStorage.clear("auth")
-            sessionStorage.clear()
+            sessionStorage.clear("messages")
+            sessionStorage.clear("uploaded")
             dispatch(handleAuth(false))
             dispatch(handleUpload(false))
             //dispatch(push(chatInitialState))

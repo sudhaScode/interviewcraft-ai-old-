@@ -110,3 +110,12 @@
     background-color: rgba(172, 117, 117, 0.61); /* Adjust opacity as needed */
     height: 2px;
   }
+
+.reset{
+    position: absolute;
+    bottom: 0;
+    left: 23%;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+}
