@@ -12,7 +12,7 @@ function NavBar(){
     const isLogin = useSelector(state=>state.flow.isLogin)
     const isUploaded = useSelector(state=>state.flow.isUploaded)
     const dispatch = useDispatch()
-   console.log(isUploaded, "upload state")
+//    console.log(isUploaded, "upload state")
     const navigate = useNavigate()
 
     const loginHandler =(event)=>{

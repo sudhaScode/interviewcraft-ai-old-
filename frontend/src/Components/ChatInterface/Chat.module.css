@@ -3,14 +3,16 @@
     height: 63vh;
     overflow-y: auto;
     margin: 3px 0;
-    margin-top: 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
+    margin-top: 20px;
     background-image: linear-gradient(to bottom,  rgb(244, 227, 227), 95%, rgb(241, 171, 171) 100%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
    
+}
+.container{
+    position: relative;
 }
 .chat-box::-webkit-scrollbar{
     width: 8px;
@@ -29,8 +31,8 @@
     margin: 2px 2px; /* Simulates a smaller thumb within the track */
   }
 .interface{
-    margin-top: 20px ;
     margin: 0 3%;
+    margin-top: 30px ;
 }
 
 .bot-container{
@@ -117,4 +119,52 @@
   h2{
     font-size: 1.2rem;
   }
- 
+  .check-mock{
+   background: rgb(57, 56, 56);
+   width: 100%;
+   height: 35px;
+   position: absolute;
+   top: -20px;
+   font-family: 'Courier New', Courier, monospace;
+   text-align: center;
+   font-weight: 800;
+   font-size: 14px;
+   color: rgba(255, 255, 255, 0.833);
+   z-index: 3;
+
+  }
+  .check-mock input{
+    margin-top: 10px;  
+    margin-left: 10px;
+  }
+  .check-mock label{
+    margin-left: 10px;
+  }
+  .check-mock input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    background-color: #cccccce9;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+
+}
+
+.check-mock input[type="checkbox"]:checked {
+    background-color: rgb(57, 56, 56) !important;
+}
+.mock-env{
+    transition: zoom-in-out 5s infinite;
+    display: inline-block;
+    color: red;
+}
+@keyframes zoom-in-zoom-out{
+  0%{
+    transform: scale(1, 1);
+  }
+  50%{
+    transform: scale(1.8, 1.8);
+  }
+  100%{
+    transform: scale(1, 1);
+  }
+}

@@ -2,11 +2,10 @@ import styles from "./Chat.module.css";
 import { useRef, useEffect } from "react";
 import {Marked} from 'marked';
 import ReactMarkdown from "react-markdown"
-
+export const botimage = "https://images.unsplash.com/photo-1586374579358-9d19d632b6df?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+export const userimage = "https://images.unsplash.com/photo-1696429175928-793a1cdef1d3?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 function Chat({messages}) {
     //console.log(messages)
-    const botimage = "https://images.unsplash.com/photo-1586374579358-9d19d632b6df?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-    const userimage = "https://images.unsplash.com/photo-1696429175928-793a1cdef1d3?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
     const marked = new Marked({ gfm: true });
     const chatEndRef = useRef(null);
 
@@ -26,6 +25,7 @@ function Chat({messages}) {
       }, [messages]);
     return (
         <div className={styles["chat-box"]} >
+       
             {messages.map((chat,index) => (
             <div className={styles.interface} key={`${chat.key}${index}`}>
                 {chat.name === "Craft.ai" ? <div className={styles["bot-container"]}>
@@ -43,7 +43,7 @@ function Chat({messages}) {
                         <img src={userimage} alt={chat.name} className={styles["chat-img"]} />
                     </div>
                     <div className={styles["container-user-message"]}>
-                        <p>{chat.response}</p>
+                        <div>{chat.response.map((prompt, index)=><p key={index}>{prompt}<br></br></p>)}</div>
                     </div>
                 </div>}
             </div>))}

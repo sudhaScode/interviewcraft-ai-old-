@@ -39,6 +39,8 @@ function PromptsMenu() {
 
     const resetHanlder=()=>{
         disptch(handleUpload(false  ))
+        localStorage.clear("fileName")
+        sessionStorage.setItem("uploaded", "false")
     }
     return (
         <div className={styles["left-nav"]}>
@@ -63,10 +65,10 @@ function PromptsMenu() {
             <div className={styles["prompts-container"]}>
                  {resume.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
             {isInterview && <div>
-                <p className={styles.predefined}>Prompts for Resume Enhancement</p>
+                <p className={styles.predefined}>Prompts for Interview Preparation </p>
             <div className={styles["prompts-container"]}> {interview.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
             {isMock && <div>
-                <p className={styles.predefined}>Prompts for Resume Enhancement</p>
+                <p className={styles.predefined}><label htmlFor="mock" style={{cursor:"pointer"}}> Make sure to check Mock Interview for better results.</label></p>
             <div className={styles["prompts-container"]}> {mock.map((prompt,index)=>(<p key={index}>{prompt}</p>))}</div> </div>}
         {<button className={styles.reset} onClick={resetHanlder}>Reset</button>}
         </div>

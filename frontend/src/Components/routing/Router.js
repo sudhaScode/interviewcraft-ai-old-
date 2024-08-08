@@ -12,7 +12,7 @@ import SignupPage from "../authcomponents/SignupPage";
      - use the route in other compomnents where need to navigate
  */
 
-const router = createBrowserRouter([
+const Router = createBrowserRouter([
     {
         path:"/",
         element: <Navigate to="/prompt"/>
@@ -37,4 +37,4 @@ const router = createBrowserRouter([
     },
 ])
 
-export default router;
+export default Router;

@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./ChatAction.module.css";
 import { useSelector,useDispatch } from "react-redux";
 import { push } from "../../reduxstore/Store";
 import axios from "axios"
+import { URL_ENDPOINT } from "../../constants/Config";
+import { botimage } from "./Chat";
 
+function ChatAction({isMock}){
 
-function ChatAction(){
     const isUploaded = useSelector(state=>state.flow.isUploaded)
-    const messages = useSelector(state=>state.chat.messages)
+    // const messages = useSelector(state=>state.chat.messages)
     const [isPromting, setIsPromting] = useState(false)
+    const [prompt, setPrompt] = useState([]);
+    const [count, setCount] = useState(1)
     const ref = useRef(null)
     const dispatch = useDispatch() 
-
     const onPromptHander=async (event)=>{
         event.preventDefault();
        // console.log("PROMTPT:: ",event.target.prompt.value)
@@ -20,14 +23,15 @@ function ChatAction(){
         let payload = {
             name: "User",
             key: "user-resume-mes",
-            response:event.target.prompt.value
+            response:prompt
         }
         const persistedMessages =JSON.parse( sessionStorage.getItem("messages"))
         persistedMessages.push(payload)
         sessionStorage.setItem("messages", JSON.stringify(persistedMessages))
         dispatch(push(payload));
+
         try{
-            const data = await fetchAPI(payload.response)
+            const data = await fetchAPI(event.target.prompt.value)
        // console.log("got it:: ",data.response)
         const result = {
             name: "Craft.ai",
@@ -40,45 +44,38 @@ function ChatAction(){
         dispatch(push(result));
         if(ref.current){
             ref.current.value=""
+            setPrompt([])
            }
         }
         catch(e){ 
-             if(ref.current){
-                ref.current.value=""
-                ref.current.placeholder="Request not processed please try again"
-               }
+            // console.log(e)
+            //  if(ref.current){
+            //     ref.current.value=""
+            //     ref.current.placeholder="Request not processed please try again"
+            //    }
         }
         setIsPromting(false)
     }
-    const enhanceAPI = async()=>{
-        try{
-            const fileName = localStorage.getItem("fileName")
-           // console.log(fileName, "::local file")
-        /*
-        const response = await fetch("http://127.0.0.1:8000/enhance", {
-            method:"POST",
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            body: JSON.stringify({fileName : fileName})
-        })
-        if(response.ok){
-            console.log("Enhanced")
-        }*/
-        }
-        catch(error){
-            console.log(error)
-        }
-
-    }
-
+    
     const fetchAPI=async(prompt)=>{
+        let URL = `${URL_ENDPOINT}/prompt`
+        const fileName = localStorage.getItem("fileName")
+
+        let body =  {
+            prompt:prompt,
+            file_name: fileName
+        }
+        if(isMock){
+            URL=`${URL_ENDPOINT}/mock`
+            body = {
+                answer: prompt,
+                file_name: fileName,
+                qnsno: count
+            }
+            setCount(prev=>prev+1)
+        }
         try{
-            const fileName = localStorage.getItem("fileName")
-            const response = await axios.post("http://127.0.0.1:8000/prompt", {
-                prompt:prompt,
-                file_name: fileName
-            } );
+            const response = await axios.post(URL, body );
             //console.log(response)
             if(response.status === 200){
                 const data=  await response.data;
@@ -94,36 +91,29 @@ function ChatAction(){
         
     }
 
-
-    // useEffect(()=>{
-    //     if(isUploaded){
-    //          enhanceAPI()
-    //     }
-
-    // },[isUploaded])
-    // useEffect(()=>{
-    //     window.addEventListener("keypress", (event)=>{
-    //         if(event.key === "Enter"){
-    //             onPromptHander(event)
-    //         }
-    //     })
-
-    //     return ()=>{
-    //         window.removeEventListener("keypress")
-    //     }
-
-    // },[])
+    const handleInputChange = (event) => {
+        const lines = event.target.value.split('\n');
+        // Process lines here
+        setPrompt([...lines])
+      };
 
     return (
-        <div className={styles["chat-conatiner"]}>
+        <>
+        {isPromting &&
+        <div className={prompt.length>1?styles.header:styles["header-one"]}>
+        <img src={botimage} alt={"Craft.ai"} className={ styles["chat-img"]} />
+        <span>{"Typing..."}</span>
+    </div>}
+        <div className={prompt.length>1? styles["chat-conatiner"]:styles["chat-conatiner-one"]}>
             
              {isUploaded ? <form className={styles["style-container"]} onSubmit={onPromptHander}>
-                <textarea className={styles["prompt-input"]} ref={ref} placeholder="Enter a prompt here" name="prompt"/>
+                <textarea className={styles["prompt-input"]} ref={ref} placeholder="Enter a prompt here" name="prompt" onChange={handleInputChange}/>
                {/* <input type="text" name="prompt" placeholder="Enter a prompt here" className={styles["prompt-input"]}/>*/}
                 <button type="submit" className={styles["send-button"]} disabled ={isPromting}><img src="https://cdn-icons-png.freepik.com/512/10109/10109981.png" alt="SEND" className={styles["send-icon"]}/></button>
-            </form>:<input type="text" value="Please upload the resume to open chat window" className={styles["prompt-chat"]} readOnly />}
+            </form>:<input type="text" value="Please upload the resume to open chat window" className={styles["prompt-window"]} readOnly />}
                 
         </div>
+        </>
     );
 }
 

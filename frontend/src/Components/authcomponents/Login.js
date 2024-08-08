@@ -19,7 +19,7 @@ function Login() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const active = window.localStorage.getItem("session")==="active"?true:false;
+    const active = window.sessionStorage.getItem("session")==="active"?true:false;
 
   // TODO: Implement login functionality
   //Event Lisnter from child
@@ -55,7 +55,7 @@ const  validation=async (username,password)=>{
         setInvalid(false);
         setLoading(true);
         setTimeout(()=>{
-            const active = window.localStorage.setItem("session", "active");
+            const active = window.sessionStorage.setItem("session", "active");
             dispatch(handleAuth(true))
             navigate("/prompt")
         },2000);

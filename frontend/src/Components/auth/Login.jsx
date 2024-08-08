@@ -7,7 +7,7 @@ function Login (){
     const navigate = useNavigate()
     const messages = useSelector(state=>state.chat.messages)
     const authHandler =()=>{
-        localStorage.setItem("auth","ba-ft-efo-er-re");
+        // localStorage.setItem("auth","ba-ft-efo-er-re");
         navigate("/prompt", { replace: true })
         dispatch(handleAuth(true))
         //sessionStorage.setItem("messages", JSON.stringify(messages))
