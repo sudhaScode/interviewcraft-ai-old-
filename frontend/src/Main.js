@@ -1,4 +1,4 @@
-import Splitter from "./Components/splitter/Splitter";
+import Splitter from "./components/splitter/Splitter";
 import React from "react";
 import styles from "./Main.module.css";
 
