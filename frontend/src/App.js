@@ -4,7 +4,7 @@ import "react-chatbot-kit/build/main.css";
 import { RouterProvider } from 'react-router-dom';
 import {Provider} from "react-redux";
 import { persistedStore} from './reduxstore/Store';
-import Router from './components/routing/Router';
+import Router from './Components/routing/Router';
 
 
 function App() {
