@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Splitter.css";
 import Split from "react-split";
 import LeftPaneMenu from "../LeftPaneMenu";
-import Chatbot from "../Chatinterface/Chatbot";
+import Chatbot from "../Chatinterface/ChatBot";
 /*  
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
@@ -12,10 +12,6 @@ import config from "../Chatbot/config";
 */
 
 function Splitter(){
-    const [isUploded, setIsUploaded] = useState(false);
-    const checkUpload =(status)=>{
-       setIsUploaded(status);
-    }
   
   //console.log("islogin", isLogin)
     return(

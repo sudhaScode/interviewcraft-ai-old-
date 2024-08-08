@@ -8,7 +8,7 @@ import {chatInitialState} from "../../reduxstore/Store"
 import { URL_ENDPOINT } from '../../constants/Config';
 import axios from 'axios';
 
-function Chatbot(){
+function ChatBot(){
     //console.log("messages:: ", messages)
 
     const dispatch = useDispatch();
@@ -88,4 +88,4 @@ if(mockENV){
 
     );
 }
-export default Chatbot;
+export default ChatBot;
